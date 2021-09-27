@@ -2,43 +2,46 @@
  * Copyright (c) 2009 ISP RAS.
  * 109004, A. Solzhenitsina, 25, Moscow, Russia.
  * All rights reserved.
- *
+ * <p>
  * $Id$
  * Created on Dec 22, 2015
- *
  */
 
 package root.gcd;
 
 /**
  * @author Victor Kuliamin
- *
  */
-public class GCD
-{
-    public int gcd(int x, int y)
-    {
-        int t;
+//Changed
+public class GCD {
+    public long gcd(int x, int y) {
+        long t;
+        long xTemp = x;
+        long yTemp = y;
+        if (xTemp < 0) {
+            xTemp = -xTemp;
+        }
+        if (yTemp < 0) {
+            yTemp = -yTemp;
+        }
 
-        if(x < 0) x = -x;
-        if(y < 0) y = -y;
 
-        while(y != 0)
-        {
-            if(y > x)
-            {
-                x = y-x;
-                y = y-x;
-                x = x+y;
+        while (yTemp != 0) {
+            if (yTemp > xTemp) {
+                xTemp = yTemp - xTemp;
+                yTemp = yTemp - xTemp;
+                xTemp = xTemp + yTemp;
             }
 
-            if(y == 0) return x;
+            if (yTemp == 0) {
+                return xTemp;
+            }
 
-            t = y;
-            y = x%y;
-            x = t;
+            t = yTemp;
+            yTemp = xTemp % yTemp;
+            xTemp = t;
         }
-        return x;
+        return xTemp;
     }
 
 
