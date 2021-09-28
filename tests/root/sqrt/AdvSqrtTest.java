@@ -93,5 +93,5 @@ class AdvSqrtTest {
     void sqrtNanTest() {
         Assert.assertEquals("Sqrt(Nan) has to be Nan", Double.NaN, advSqrt.sqrt(Double.NaN), EPS);
     }
-    
+
 }

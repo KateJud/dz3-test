@@ -1,8 +1,13 @@
 package root.gcd;
 
+import java.time.Duration;
+
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 //Катя Юдина 8_8 [классная работа будет чуть позже]
 //Junit 5
@@ -110,14 +115,16 @@ class GCDTest {
     /* ------------------------------------------------ Граничные значения -------------------------------------------*/
 
     //-2^31
-    // Тест не проходит
+    // Тест не проходит (ограничила по времени)
     // а) Внутри метода 'x' и 'y' надо поменять на long и возвращаемое значение сделать long
     // Test  assertEquals((int)Math.pow(2,31),gcd.gcd((int)Math.pow(-2,31),(int)Math.pow(-2,31)));
     // б) ограничить нижнее значение -2^31+1
     @Test
     void gcdMinArgTest() {
-        GCD gcd=new GCD();
-        assertEquals(4,gcd.gcd((int)Math.pow(-2,31),4));
+        GCD gcd = new GCD();
+        assertTimeoutPreemptively(Duration.ofMillis(100), () -> {
+            gcd.gcd((int) Math.pow(-2, 31), (int) Math.pow(-2, 31));
+        });
     }
 
 
